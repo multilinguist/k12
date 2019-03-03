@@ -62,38 +62,9 @@ def getSubstract(startNum,endNum):
 	print(allFormula)
 	return(allFormula)
 	
-def genTable():
-	formulas1 = getAdd(11,18)
-	formulas2 = getAdd(11,20)
-	formulas3 = getAdd(21,25)
-	formulas4 = getAdd(26,30)
-	print(len(formulas1))
-	print(len(formulas2))
-	print(len(formulas3))
-	print(len(formulas4))
-	allFormulas=[]
-	for item in formulas1:
-		if item[0]<10 and item[1]<10:
-			allFormulas.append(item)
-	#allFormulas = formulas1
-	#allFormulas.extend(formulas2*4)
-	#allFormulas.extend(formulas3*3)
-	#allFormulas.extend(formulas4)
-	random.shuffle(allFormulas)
-	print(allFormulas)
-	print(len(allFormulas))
-	'''
+def genTable_sub():
 	data=[]
-	for item in allFormulas:
-		formula = []
-		formula.append("%s "%item[0])
-		formula.append("+")
-		formula.append("%s"%item[1])
-		formula.append("=   ")
-		data.append(formula)
-	'''
-	data=[]
-	allFormulas = getSubstract(1,10)
+	allFormulas = getSubstract(5,15)
 	allFormulas = allFormulas*2
 	random.shuffle(allFormulas)
 	for item in allFormulas:
@@ -103,16 +74,49 @@ def genTable():
 		formula.append("%s"%item[0])
 		formula.append("=   ")
 		data.append(formula)
-	'''
+		
+def genTable_twodigits():
 	data=[]
-	for a in range(11,18):
+	for a in [15,11,14,12,18,13,16,17]:#range(11,18)
 		for b in range(a,18):
 			if a%10+b%10 > 9:
 				continue
 			data.extend(getRegroup(a,b))
-	'''
-	print(data[:5])
-	print(len(data))
+	#random.shuffle(data)
+	#print(data)
+	return(data)
+	
+def genTable():
+	formulas1 = getAdd(11,18)
+	formulas2 = getAdd(11,20)
+	formulas3 = getAdd(21,25)
+	formulas4 = getAdd(30,50)
+	print(len(formulas1))
+	print(len(formulas2))
+	print(len(formulas3))
+	print(len(formulas4))
+	allFormulas=[]
+	for item in formulas4:
+		if (item[0]>=30 and item[1]>=10) or (item[1]>=30 and item[0]>=10) or (item[1]<30 and item[0]<30):
+			continue
+		allFormulas.append(item)
+	#allFormulas = formulas1
+	#allFormulas.extend(formulas2*4)
+	#allFormulas.extend(formulas3*3)
+	#allFormulas.extend(formulas4)
+	random.shuffle(allFormulas)
+	print(allFormulas)
+	print(len(allFormulas))
+	
+	data=[]
+	for item in allFormulas:
+		formula = []
+		formula.append("%s "%item[0])
+		formula.append("+")
+		formula.append("%s"%item[1])
+		formula.append("=   ")
+		data.append(formula)
+
 	table = platypus.Table(data, 1*inch, 1.2*inch, [('FONT', (0,0), (-1,-1), 'Courier',70)])
 	return table
 def toPdf():
