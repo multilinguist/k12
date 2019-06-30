@@ -75,16 +75,23 @@ def genTable_sub():
 		formula.append("=   ")
 		data.append(formula)
 		
-def genTable_twodigits():
+def getAdd_twodigits():
 	data=[]
-	for a in [15,11,14,12,18,13,16,17]:#range(11,18)
-		for b in range(a,18):
-			if a%10+b%10 > 9:
+	for a in range(10,91):
+		for b in range(10,91):
+			if a+b > 100:
 				continue
-			data.extend(getRegroup(a,b))
-	#random.shuffle(data)
-	#print(data)
-	return(data)
+			data.append((a,b))
+	data1 = []
+	for item in data:
+		if item[1]<item[0]:
+			data1.append((item[1],item[0]))
+		else:
+			data1.append(item)
+	data1 = list(set(data1))
+	random.shuffle(data1)
+	print(data1)
+	return(data1)
 	
 def genTable():
 	formulas1 = getAdd(11,18)
@@ -100,7 +107,7 @@ def genTable():
 		if (item[0]>=30 and item[1]>=10) or (item[1]>=30 and item[0]>=10) or (item[1]<30 and item[0]<30):
 			continue
 		allFormulas.append(item)
-	#allFormulas = formulas1
+	allFormulas = getAdd_twodigits()
 	#allFormulas.extend(formulas2*4)
 	#allFormulas.extend(formulas3*3)
 	#allFormulas.extend(formulas4)
