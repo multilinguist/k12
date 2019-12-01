@@ -77,9 +77,11 @@ def genTable_sub():
 		
 def getAdd_twodigits():
 	data=[]
-	for a in range(10,91):
-		for b in range(10,91):
+	for a in range(1,90):
+		for b in range(1,90):
 			if a+b > 100:
+				continue
+			if a%10 + b%10 <= 10:
 				continue
 			data.append((a,b))
 	data1 = []
