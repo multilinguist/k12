@@ -5,6 +5,7 @@ from reportlab.lib.units import inch
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
+from datetime import datetime
 
 pdfmetrics.registerFont(TTFont('hei', 'SIMHEI.TTF'))
 Style=getSampleStyleSheet()
@@ -64,7 +65,7 @@ def getSubstract(startNum,endNum):
 	
 def genTable_sub():
 	data=[]
-	allFormulas = getSubstract(5,15)
+	allFormulas = getSubstract(1,99)
 	allFormulas = allFormulas*2
 	random.shuffle(allFormulas)
 	for item in allFormulas:
@@ -118,10 +119,18 @@ def genTable():
 	print(len(allFormulas))
 	
 	data=[]
-	for item in allFormulas:
+	'''for item in allFormulas:
 		formula = []
 		formula.append("%s "%item[0])
 		formula.append("+")
+		formula.append("%s"%item[1])
+		formula.append("=   ")
+		data.append(formula)'''
+
+	for item in allFormulas:
+		formula = []
+		formula.append("%s "%(item[0]+item[1]))
+		formula.append("-")
 		formula.append("%s"%item[1])
 		formula.append("=   ")
 		data.append(formula)
